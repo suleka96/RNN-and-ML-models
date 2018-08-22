@@ -121,7 +121,7 @@ def train_test():
 
     #Defining Hyperparameters
 
-    epochs = 20
+    epochs = 7
     lstm_layers = 1
     batch_size = 32
     lstm_size = 30
@@ -310,3 +310,4 @@ if __name__ == '__main__':
     train_test()
 
 
+#8 and 6

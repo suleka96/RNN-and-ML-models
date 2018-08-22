@@ -57,7 +57,7 @@ def make_dataset(dictionary):
 
 
 d = make_dict()
-print("c is 5")
+print("1 to 50")
 features, labels = make_dataset(d)
 print(len(features), "   ", len(labels))
 
@@ -71,21 +71,21 @@ X_train,X_test,y_train,y_test = train_test_split(features, labels, test_size=0.2
 # clf.fit(X_train, y_train)
 # p = clf.predict(X_test)
 
-param_grid = [{'C': range(1, 1000), 'kernel': ['linear']}]
+# param_grid = [{'C': range(1, 50), 'kernel': ['linear']}]
+#
+# clf = GridSearchCV(SVC(), param_grid, cv=5)
+# clf.fit(X_train, y_train)
 
-clf = GridSearchCV(SVC(), param_grid, cv=5)
-clf.fit(X_train, y_train)
+# print("Best parameters set found on development set:")
+# print()
+# print(clf.best_params_)
+# print()
 
-print("Best parameters set found on development set:")
-print()
-print(clf.best_params_)
-print()
+# svctest = SVC(kernel='linear', random_state=42, C=clf.best_params_["C"])
+# svctest.fit(X_train, y_train)
+# prediction = svctest.predict(X_test)
 
-svctest = SVC(kernel='linear', random_state=42, C=clf.best_params_["C"])
-svctest.fit(X_train, y_train)
-prediction = svctest.predict(X_test)
-
-svctest2 = SVC(kernel='linear', random_state=42)
+svctest2 = SVC(kernel='linear', random_state=42, C=1)
 svctest2.fit(X_train, y_train)
 prediction2 = svctest2.predict(X_test)
 
@@ -116,19 +116,19 @@ prediction2 = svctest2.predict(X_test)
 # print("Precision")
 # print(precision_score(y_test, pred, average='macro'))
 
-print("----------------------SVC------------------------------")
-print("Accuracy score")
-print(accuracy_score(y_test, prediction))
-print("F1 score")
-print(f1_score(y_test, prediction, average='macro'))
-print("Recall")
-print(recall_score(y_test, prediction, average='macro'))
-print("Precision")
-print(precision_score(y_test, prediction, average='macro'))
-print(classification_report(y_test, prediction))
-
-print()
-print()
+# print("----------------------SVC------------------------------")
+# print("Accuracy score")
+# print(accuracy_score(y_test, prediction))
+# print("F1 score")
+# print(f1_score(y_test, prediction, average='macro'))
+# print("Recall")
+# print(recall_score(y_test, prediction, average='macro'))
+# print("Precision")
+# print(precision_score(y_test, prediction, average='macro'))
+# print(classification_report(y_test, prediction))
+#
+# print()
+# print()
 
 print("Accuracy score")
 print(accuracy_score(y_test, prediction2))
