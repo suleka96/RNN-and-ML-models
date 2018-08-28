@@ -15,12 +15,16 @@ def pre_process():
     words = []
     temp_email_text = []
     labels = []
+    hamcounter=0
+    spamcounter =0
 
     for email in emails:
         if "ham" in email:
             labels.append(0)
+            hamcounter +=1
         else:
             labels.append(1)
+            spamcounter +=1
         f = open(email,encoding="utf8", errors='ignore')
         blob = f.read()
         all_text = ''.join([text for text in blob if text not in punctuation])
@@ -71,25 +75,31 @@ def pre_process():
     # print(len(features[1]))
     # blah = list(enumerate(message_ints))
     # print(blah[:2])
-
+    print(hamcounter)
+    print(spamcounter)
     return features, np.array(labels), sorted_split_words
-
 
 def get_batches(x, y, batch_size=100):
     n_batches = len(x) // batch_size
+    x, y = x[:n_batches * batch_size], y[:n_batches * batch_size]
+    for ii in range(0, len(x), batch_size):
+        yield x[ii:ii + batch_size], y[ii:ii + batch_size]
 
-    batch_counter = 0
-    ii = 0
-
-    while(ii != len(x)):
-        if(batch_counter == n_batches):
-            yield x[ii:], y[ii:]
-            ii = len(x)
-        else:
-            yield x[ii:ii + batch_size], y[ii:ii + batch_size]
-            ii += batch_size
-
-        batch_counter += 1
+# def get_batches(x, y, batch_size=100):
+#     n_batches = len(x) // batch_size
+#
+#     batch_counter = 0
+#     ii = 0
+#
+#     while(ii != len(x)):
+#         if(batch_counter == n_batches):
+#             yield x[ii:], y[ii:]
+#             ii = len(x)
+#         else:
+#             yield x[ii:ii + batch_size], y[ii:ii + batch_size]
+#             ii += batch_size
+#
+#         batch_counter += 1
 
 def train_test():
 
@@ -121,7 +131,7 @@ def train_test():
 
     #Defining Hyperparameters
 
-    epochs = 7
+    epochs = 10
     lstm_layers = 1
     batch_size = 32
     lstm_size = 30
@@ -147,7 +157,7 @@ def train_test():
 
         #getting dynamic batch size according to the input tensor size
 
-        dynamic_batch_size = tf.shape(inputs_)[0]
+        # dynamic_batch_size = tf.shape(inputs_)[0]
 
         #output_keep_prob is the dropout added to the RNN's outputs, the dropout will have no effect on the calculation of the subsequent states.
 
@@ -170,12 +180,12 @@ def train_test():
         cell = tf.contrib.rnn.MultiRNNCell([drop] * lstm_layers)
 
         # Getting an initial state of all zeros
-        initial_state = cell.zero_state(dynamic_batch_size, tf.float32)
+        initial_state = cell.zero_state(batch_size, tf.float32)
 
         outputs, final_state = tf.nn.dynamic_rnn(cell, embed, initial_state=initial_state)
 
         #hidden layer
-        hidden = tf.layers.dense(outputs[:, -1], units=23, activation=tf.nn.relu)
+        hidden = tf.layers.dense(outputs[:, -1], units=25, activation=tf.nn.relu)
 
         predictions = tf.contrib.layers.fully_connected(hidden, 1, activation_fn=tf.sigmoid)
 
@@ -193,11 +203,8 @@ def train_test():
         sess.run(tf.global_variables_initializer())
         iteration = 1
         for e in range(epochs):
+            state = sess.run(initial_state)
             for ii, (x, y) in enumerate(get_batches(np.array(train_x), np.array(train_y), batch_size), 1):
-
-                tensor_x = tf.convert_to_tensor(x, np.int32)
-
-                state = sess.run(cell.zero_state(tensor_x.get_shape()[0], tf.float32))
 
                 feed = {inputs_: x,
                         labels_: y[:, None],
@@ -213,6 +220,7 @@ def train_test():
         saver.save(sess, "checkpoints/sentiment.ckpt")
 
     #-----------------testing validation set-----------------------------------------
+    print("starting validation set")
     test_acc = []
     f1 = []
     recall = []
@@ -221,11 +229,9 @@ def train_test():
         tf.set_random_seed(1)
         saver.restore(sess, tf.train.latest_checkpoint('checkpoints'))
 
+        test_state = sess.run(cell.zero_state(batch_size, tf.float32))
+
         for ii, (x, y) in enumerate(get_batches(np.array(val_x), np.array(val_y), batch_size), 1):
-
-            tensor_x = tf.convert_to_tensor(x, np.int32)
-
-            test_state = sess.run(cell.zero_state(tensor_x.get_shape()[0], tf.float32))
 
             feed = {inputs_: x,
                     labels_: y[:, None],
@@ -235,8 +241,7 @@ def train_test():
 
             prediction = sess.run([predictions], feed_dict=feed)
             prediction = np.array(prediction)
-            prediction = prediction.reshape((x.get_shape()[0], 1))
-            print(prediction.shape)
+            prediction = prediction.reshape((batch_size, 1))
 
             batch_f1 = f1_score(np.array(y), prediction.round(), average='macro')
             batch_recall = recall_score(y_true=np.array(y), y_pred=prediction.round())
@@ -260,6 +265,7 @@ def train_test():
             f.write(str(np.mean(precision)))
 
     # -----------------testing test set-----------------------------------------
+    print("starting testing set")
     test_acc = []
     f1 = []
     recall = []
@@ -267,12 +273,9 @@ def train_test():
     with tf.Session(graph=graph) as sess:
         tf.set_random_seed(1)
         saver.restore(sess, tf.train.latest_checkpoint('checkpoints'))
+        test_state = sess.run(cell.zero_state(batch_size, tf.float32))
 
         for ii, (x, y) in enumerate(get_batches(np.array(test_x), np.array(test_y), batch_size), 1):
-
-            tensor_x = tf.convert_to_tensor(x, np.int32)
-
-            test_state = sess.run(cell.zero_state(tensor_x.get_shape()[0], tf.float32))
 
             feed = {inputs_: x,
                     labels_: y[:, None],
@@ -282,8 +285,7 @@ def train_test():
 
             prediction = sess.run([predictions], feed_dict=feed)
             prediction = np.array(prediction)
-            prediction = prediction.reshape((x.get_shape()[0], 1))
-            print(prediction.shape)
+            prediction = prediction.reshape((batch_size, 1))
 
             batch_f1 = f1_score(np.array(y), prediction.round(), average='macro')
             batch_recall = recall_score(y_true=np.array(y), y_pred=prediction.round())
