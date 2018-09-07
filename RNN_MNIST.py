@@ -2,6 +2,7 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("temp/data/", one_hot=True)
 from tensorflow.python.ops import rnn, rnn_cell
+import numpy as np
 
 
 # cycles of feed forward and backprop
@@ -63,6 +64,29 @@ def train_neural_network(x):
             # print('F1 score: ', f1)
 
         correct =  tf.equal(tf.arg_max(prediction, 1), tf.argmax(y, 1))
+
+        pred = tf.round(tf.nn.softmax(prediction)).eval({x: epoch_x, y: epoch_y})
+
+        pred = np.array(pred)
+        # t = np.array(epoch_y)
+
+        print(pred[0])
+        print(epoch_y[0])
+
+        res = (pred[0]==epoch_y[0]).all()
+        print(res)
+
+
+
+        if not res:
+            print('false')
+        else:
+            print('true f')
+
+        #
+
+
+        print(correct)
         accuracy = tf.reduce_mean(tf.cast(correct,'float'))
         print('Accuracy:', accuracy.eval({x:mnist.test.images.reshape((-1, n_chunks, chunk_size)), y:mnist.test.labels}))
 
