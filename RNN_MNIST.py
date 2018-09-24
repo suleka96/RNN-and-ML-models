@@ -63,30 +63,8 @@ def train_neural_network(x):
             print('Epoch', epoch, 'compleated out of', hm_epochs, 'loss:', epoch_loss)
             # print('F1 score: ', f1)
 
-        correct =  tf.equal(tf.arg_max(prediction, 1), tf.argmax(y, 1))
+        correct =  tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
 
-        pred = tf.round(tf.nn.softmax(prediction)).eval({x: epoch_x, y: epoch_y})
-
-        pred = np.array(pred)
-        # t = np.array(epoch_y)
-
-        print(pred[0])
-        print(epoch_y[0])
-
-        res = (pred[0]==epoch_y[0]).all()
-        print(res)
-
-
-
-        if not res:
-            print('false')
-        else:
-            print('true f')
-
-        #
-
-
-        print(correct)
         accuracy = tf.reduce_mean(tf.cast(correct,'float'))
         print('Accuracy:', accuracy.eval({x:mnist.test.images.reshape((-1, n_chunks, chunk_size)), y:mnist.test.labels}))
 

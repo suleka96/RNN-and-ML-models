@@ -169,6 +169,8 @@ def train_test():
         #generating random values from a uniform distribution (minval included and maxval excluded)
         embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))
         embed = tf.nn.embedding_lookup(embedding, inputs_)
+        print(embedding.shape)
+        print(embed.shape)
 
         # Your basic LSTM cell
         lstm = tf.contrib.rnn.BasicLSTMCell(lstm_size)

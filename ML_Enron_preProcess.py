@@ -12,7 +12,7 @@ from sklearn.metrics import classification_report
 
 
 def make_dict():
-    direc = "enron/emails/"
+    direc = "enron/email2/"
     files = os.listdir(direc)
     emails = [direc+email for email in files]
 
@@ -33,7 +33,7 @@ def make_dict():
     return dictionary.most_common(3000)
 
 def make_dataset(dictionary):
-    direc = "enron/emails/"
+    direc = "enron/email2/"
     files = os.listdir(direc)
     emails = [direc + email for email in files]
     print(len(emails))
@@ -53,6 +53,8 @@ def make_dataset(dictionary):
             labels.append(0)
         else:
             labels.append(1)
+
+    print(feature_set[0])
     return feature_set, labels
 
 

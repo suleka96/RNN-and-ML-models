@@ -8,3 +8,5 @@ Scikit = 0.19.1
 Pip 10.0.1
 Numpy = 1.14.3
 Python 3.6.5
+
+install tensorflow : pip install tensorflow==1.6

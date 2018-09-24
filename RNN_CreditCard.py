@@ -62,6 +62,7 @@ def recurrent_neural_network_model():
 
     output = tf.matmul(outputs[-1], layer['weights']) + layer['bias']
 
+
     return output
 
 def train_neural_network():

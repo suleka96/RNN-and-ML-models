@@ -9,3 +9,4 @@ results.txt
 /checkpoints/sentiment.ckpt.data-00000-of-00001
 /checkpoints/sentiment.ckpt.index
 /checkpoints/sentiment.ckpt.meta
+*.jpg\n*.jpeg\n*.png\n*.gif\n

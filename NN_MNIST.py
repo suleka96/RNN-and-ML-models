@@ -15,6 +15,8 @@ x = tf.placeholder('float', [None, 784])
 y = tf.placeholder('float')
 
 def neural_network_model(data):
+    print(data.shape)
+
     hidden_1_layer ={ 'weights': tf.Variable(tf.random_normal([784, n_nodes_hl1])),
                       'bias': tf.Variable(tf.random_normal([n_nodes_hl1]))}
     hidden_2_layer = {'weights': tf.Variable(tf.random_normal([n_nodes_hl1, n_nodes_hl2])),
