@@ -84,7 +84,7 @@ def plot(noOfWrongPred, dataPoints):
     plt.plot(dataPoints, noOfWrongPred, label='Prediction', color='blue', linewidth=1.8)
     # plt.legend(loc='upper right', fontsize=14)
 
-    plt.savefig('distribution of wrong predictions.png')
+    plt.savefig('distribution of wrong predictions RNN.png')
     # plt.show()
 
 

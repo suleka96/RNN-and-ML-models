@@ -1,12 +1,12 @@
 import os
 from collections import Counter
 import numpy as np
-from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 from string import punctuation
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score
+
 
 
 def pre_process():

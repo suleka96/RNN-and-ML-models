@@ -89,7 +89,7 @@ def plot(noOfWrongPred, dataPoints):
     plt.plot(dataPoints, noOfWrongPred, label='Prediction', color='blue', linewidth=1.8)
     # plt.legend(loc='upper right', fontsize=14)
 
-    plt.savefig('distribution of wrong predictions.png')
+    plt.savefig('distribution of wrong predictions 20 News LSTM.png')
     # plt.show()
 
 
@@ -104,7 +104,7 @@ def train_test():
 
     lstm_layers = 1
     batch_size = 1
-    lstm_size = 200
+    lstm_size = 30
     learning_rate = 0.01
 
     # --------------placeholders-------------------------------------
@@ -128,7 +128,7 @@ def train_test():
         embed_size = 300
 
         # generating random values from a uniform distribution (minval included and maxval excluded)
-        embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1),trainable=True)
+        embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))
         embed = tf.nn.embedding_lookup(embedding, inputs_)
 
         print(embedding.shape)
@@ -159,8 +159,9 @@ def train_test():
 
         cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logit, labels=labels_))
 
-
         optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
+
+        predictions = tf.nn.sigmoid(logit)
 
         saver = tf.train.Saver()
 
@@ -183,15 +184,15 @@ def train_test():
                     keep_prob: 0.5,
                     initial_state: state}
 
-            predictions = tf.nn.softmax(logit).eval(feed_dict=feed)
+            prediction = sess.run(predictions, feed_dict=feed)
 
             print("----------------------------------------------------------")
             print("sez: ",sql)
             print("Iteration: {}".format(iteration))
 
-            isequal = np.equal(np.argmax(predictions[0], 0), np.argmax(y[0], 0))
+            isequal = np.equal(np.argmax(prediction[0], 0), np.argmax(y[0], 0))
 
-            print(np.argmax(predictions[0], 0))
+            print(np.argmax(prediction[0], 0))
             print(np.argmax(y[0], 0))
 
             if not (isequal):

@@ -2,9 +2,8 @@ import os
 from collections import Counter
 import tensorflow as tf
 import numpy as np
-from sklearn.metrics import f1_score, recall_score, precision_score
+from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 from string import punctuation
-from sklearn.model_selection import train_test_split
 
 
 def pre_process():
@@ -52,29 +51,12 @@ def pre_process():
         temp_message = message.split(" ")
         message_ints.append([vocab_to_int[i] for i in temp_message])
 
-    # print(temp_email_text[0])
-    # print(labels[:10])
-    # print(message_ints[0])
-    # print("\n")
-    # print(len(temp_email_text[0]))
-    # print(len(message_ints[0]))
-
-    #maximum message length = 3423
-
-    message_lens = Counter([len(x) for x in message_ints])
-    # print("Zero-length messages: {}".format(message_lens[0]))
-    # print("Maximum message length: {}".format(max(message_lens)))
-
     seq_length = 3425
     num_messages = len(temp_email_text)
     features = np.zeros([num_messages,seq_length], dtype=int)
     for i, row in enumerate(message_ints):
         features[i, -len(row):] = np.array(row)[:seq_length]
 
-    # print(len(features[0]))
-    # print(len(features[1]))
-    # blah = list(enumerate(message_ints))
-    # print(blah[:2])
     print(hamcounter)
     print(spamcounter)
     return features, np.array(labels), sorted_split_words
@@ -85,21 +67,6 @@ def get_batches(x, y, batch_size=100):
     for ii in range(0, len(x), batch_size):
         yield x[ii:ii + batch_size], y[ii:ii + batch_size]
 
-# def get_batches(x, y, batch_size=100):
-#     n_batches = len(x) // batch_size
-#
-#     batch_counter = 0
-#     ii = 0
-#
-#     while(ii != len(x)):
-#         if(batch_counter == n_batches):
-#             yield x[ii:], y[ii:]
-#             ii = len(x)
-#         else:
-#             yield x[ii:ii + batch_size], y[ii:ii + batch_size]
-#             ii += batch_size
-#
-#         batch_counter += 1
 
 def train_test():
 
@@ -131,11 +98,11 @@ def train_test():
 
     #Defining Hyperparameters
 
-    epochs = 10
+    epochs = 15
     lstm_layers = 1
-    batch_size = 32
+    batch_size = 179
     lstm_size = 30
-    n_words = len(sorted_split_words)
+    n_words = len(sorted_split_words)+1
     learning_rate = 0.003
 
     print(n_words)
@@ -153,11 +120,9 @@ def train_test():
         tf.set_random_seed(1)
 
         inputs_ = tf.placeholder(tf.int32, [None,None], name = "inputs")
-        labels_ = tf.placeholder(tf.int32, [None,None], name = "labels")
+        labels_ = tf.placeholder(tf.float32, [None,None], name = "labels")
 
         #getting dynamic batch size according to the input tensor size
-
-        # dynamic_batch_size = tf.shape(inputs_)[0]
 
         #output_keep_prob is the dropout added to the RNN's outputs, the dropout will have no effect on the calculation of the subsequent states.
 
@@ -189,12 +154,13 @@ def train_test():
         #hidden layer
         hidden = tf.layers.dense(outputs[:, -1], units=25, activation=tf.nn.relu)
 
-        predictions = tf.contrib.layers.fully_connected(hidden, 1, activation_fn=tf.sigmoid)
+        logit = tf.contrib.layers.fully_connected(hidden, num_outputs=1, activation_fn=None)
 
-        cost = tf.losses.mean_squared_error(labels_, predictions)
+        cost = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=logit, labels=labels_))
+
         optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
-        correct_pred = tf.equal(tf.cast(tf.round(predictions), tf.int32), labels_)
-        accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+
+        predictions = tf.round(tf.nn.sigmoid(logit))
 
         saver = tf.train.Saver()
 
@@ -219,14 +185,12 @@ def train_test():
                           "Iteration: {}".format(iteration),
                           "Train loss: {:.3f}".format(loss))
                 iteration += 1
+
         saver.save(sess, "checkpoints/sentiment.ckpt")
 
     #-----------------testing validation set-----------------------------------------
     print("starting validation set")
-    test_acc = []
-    f1 = []
-    recall = []
-    precision = []
+    prediction_vals = []
     with tf.Session(graph=graph) as sess:
         tf.set_random_seed(1)
         saver.restore(sess, tf.train.latest_checkpoint('checkpoints'))
@@ -239,39 +203,27 @@ def train_test():
                     labels_: y[:, None],
                     keep_prob: 1,
                     initial_state: test_state}
-            batch_acc, test_state = sess.run([accuracy, final_state], feed_dict=feed)
 
-            prediction = sess.run([predictions], feed_dict=feed)
-            prediction = np.array(prediction)
-            prediction = prediction.reshape((batch_size, 1))
+            prediction = sess.run(predictions, feed_dict=feed)
+            prediction = prediction.astype(int)
 
-            batch_f1 = f1_score(np.array(y), prediction.round(), average='macro')
-            batch_recall = recall_score(y_true=np.array(y), y_pred=prediction.round())
-            batch_precision = precision_score(y, prediction.round(), average='macro')
+            for pred in prediction:
+                prediction_vals.append(pred[0])
 
-            test_acc.append(batch_acc)
-            f1.append(batch_f1)
-            recall.append(batch_recall)
-            precision.append(batch_precision)
+        accuracy = accuracy_score(y, prediction_vals)
+        f1 = f1_score(y, prediction_vals, average='macro')
+        recall = recall_score(y_true=y, y_pred=prediction_vals, average='macro')
+        precision = precision_score(y, prediction_vals, average='macro')
 
         print("-----------------testing validation set-----------------------------------------")
-        print("Test accuracy: {:.3f}".format(np.mean(test_acc)))
-        print("F1 Score: {:.3f}".format(np.mean(f1)))
-        print("Recall: {:.3f}".format(np.mean(recall)))
-        print("Precision: {:.3f}".format(np.mean(precision)))
-
-        with open('results.txt', 'a') as f:
-            f.write(str(np.mean(test_acc)))
-            f.write(str(np.mean(f1)))
-            f.write(str(np.mean(recall)))
-            f.write(str(np.mean(precision)))
+        print("Test accuracy: {:.3f}".format(accuracy))
+        print("F1 Score: {:.3f}".format(f1))
+        print("Recall: {:.3f}".format(recall))
+        print("Precision: {:.3f}".format(precision))
 
     # -----------------testing test set-----------------------------------------
     print("starting testing set")
-    test_acc = []
-    f1 = []
-    recall = []
-    precision = []
+    prediction_val = []
     with tf.Session(graph=graph) as sess:
         tf.set_random_seed(1)
         saver.restore(sess, tf.train.latest_checkpoint('checkpoints'))
@@ -283,35 +235,25 @@ def train_test():
                     labels_: y[:, None],
                     keep_prob: 1,
                     initial_state: test_state}
-            batch_acc, test_state = sess.run([accuracy, final_state], feed_dict=feed)
 
-            prediction = sess.run([predictions], feed_dict=feed)
-            prediction = np.array(prediction)
-            prediction = prediction.reshape((batch_size, 1))
+            prediction = sess.run(predictions, feed_dict=feed)
+            prediction = prediction.astype(int)
 
-            batch_f1 = f1_score(np.array(y), prediction.round(), average='macro')
-            batch_recall = recall_score(y_true=np.array(y), y_pred=prediction.round())
-            batch_precision = precision_score(y, prediction.round(), average='macro')
+            for pred in prediction:
+                prediction_vals.append(pred[0])
 
-            test_acc.append(batch_acc)
-            f1.append(batch_f1)
-            recall.append(batch_recall)
-            precision.append(batch_precision)
+        accuracy = accuracy_score(y, prediction_val )
+        f1 = f1_score(y, prediction_val, average='macro')
+        recall = recall_score(y_true=y, y_pred=prediction_val, average='macro')
+        precision = precision_score(y, prediction_val, average='macro')
 
-        print("-----------------testing test set-----------------------------------------")
-        print("Test accuracy: {:.3f}".format(np.mean(test_acc)))
-        print("F1 Score: {:.3f}".format(np.mean(f1)))
-        print("Recall: {:.3f}".format(np.mean(recall)))
-        print("Precision: {:.3f}".format(np.mean(precision)))
+        print("-----------------testing validation set-----------------------------------------")
+        print("Test accuracy: {:.3f}".format(accuracy))
+        print("F1 Score: {:.3f}".format(f1))
+        print("Recall: {:.3f}".format(recall))
+        print("Precision: {:.3f}".format(precision))
 
-        with open('results.txt', 'a') as f:
-            f.write(str(np.mean(test_acc)))
-            f.write(str(np.mean(f1)))
-            f.write(str(np.mean(recall)))
-            f.write(str(np.mean(precision)))
 
 if __name__ == '__main__':
     train_test()
 
-
-#8 and 6

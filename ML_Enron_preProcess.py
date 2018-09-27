@@ -63,7 +63,19 @@ print("1 to 50")
 features, labels = make_dataset(d)
 print(len(features), "   ", len(labels))
 
-X_train,X_test,y_train,y_test = train_test_split(features, labels, test_size=0.2, random_state=42,  shuffle=False)
+split_frac1 = 0.8
+
+idx1 = int(len(features) * split_frac1)
+train_x, val_x = features[:idx1], features[idx1:]
+train_y, val_y = labels[:idx1], labels[idx1:]
+
+split_frac2 = 0.5
+
+idx2 = int(len(val_x) * split_frac2)
+val_x, test_x = val_x[:idx2], val_x[idx2:]
+val_y, test_y = val_y[:idx2], val_y[idx2:]
+
+
 
 # mlnb= MultinomialNB()
 # mlnb.fit(X_train,y_train)
@@ -87,9 +99,10 @@ X_train,X_test,y_train,y_test = train_test_split(features, labels, test_size=0.2
 # svctest.fit(X_train, y_train)
 # prediction = svctest.predict(X_test)
 
-svctest2 = SVC(kernel='linear', random_state=42, C=100)
-svctest2.fit(X_train, y_train)
-prediction2 = svctest2.predict(X_test)
+svctest2 = SVC(kernel='linear', random_state=42, C=30)
+svctest2.fit(train_x, train_y)
+validation_pred = svctest2.predict(val_x)
+test_pred = svctest2.predict(test_x)
 
 
 
@@ -132,15 +145,27 @@ prediction2 = svctest2.predict(X_test)
 # print()
 # print()
 
+print("---------------------VALIDATION SCORES--------------------")
 print("Accuracy score")
-print(accuracy_score(y_test, prediction2))
+print(accuracy_score(val_y, validation_pred))
 print("F1 score")
-print(f1_score(y_test, prediction2, average='macro'))
+print(f1_score(val_y, validation_pred, average='macro'))
 print("Recall")
-print(recall_score(y_test, prediction2, average='macro'))
+print(recall_score(val_y, validation_pred, average='macro'))
 print("Precision")
-print(precision_score(y_test, prediction2, average='macro'))
-print(classification_report(y_test, prediction2))
+print(precision_score(val_y, validation_pred, average='macro'))
+
+
+print("---------------------TEST SCORES--------------------")
+print("Accuracy score")
+print(accuracy_score(test_y, test_pred))
+print("F1 score")
+print(f1_score(test_y, test_pred, average='macro'))
+print("Recall")
+print(recall_score(test_y, test_pred, average='macro'))
+print("Precision")
+print(precision_score(test_y, test_pred, average='macro'))
+
 
 
 # print("-------------------------Random Forest Classifier-------------------------------------------")

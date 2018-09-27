@@ -3,7 +3,9 @@ import numpy as np
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.utils import shuffle
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 import matplotlib as mplt
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import nltk
 nltk.download('stopwords')
@@ -37,61 +39,53 @@ def preProcess():
     features = vectorizer.fit_transform(newsgroups_data.data)
     labels= newsgroups_data.target
 
+    print(newsgroups_data.target[:30])
+
     return features, labels
 
 
 if __name__ == '__main__':
 
-    error = 0
-    noOfWrongPreds = []
-    dataPoints = []
-
     features, labels = preProcess()
 
-    print(type(features)," ",type(labels))
-
-    X_train, y_train = shuffle(features, labels, random_state=seed)
+    train_x, test_x, train_y, test_y = train_test_split(features, labels, test_size=0.2, shuffle=False, random_state=42)
 
     clf = PassiveAggressiveClassifier(random_state=seed)
 
-    clf.fit(X_train, y_train)
-    predpa = clf.predict(X_train)
+    for i in range(len(train_y)):
+        X, y = train_x[i:i + 1], train_y[i:i + 1]
+        clf.partial_fit(X, y,classes=np.array([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]))
 
-    for i in range(1, len(predpa), 1):
-        if y_train[i] - predpa[i] != 0:
-            error += 1
-
-        if i % 50 == 0:
-            noOfWrongPreds.append(error / (i+1))
-            dataPoints.append(i+1)
 
     print("--------------------------PassiveAgressive--------------------------------")
-    print(error)
-    print(np.divide(error, len(y_train), dtype=np.float))
-    plot(noOfWrongPreds, dataPoints, "distribution of wrong predictions passiveAgresssive")
+    predpa = clf.predict(test_x)
+    print("Accuracy score")
+    print(accuracy_score(test_y, predpa))
+    print("F1 score")
+    print(f1_score(test_y, predpa, average='macro'))
+    print("Recall")
+    print(recall_score(test_y, predpa, average='macro'))
+    print("Precision")
+    print(precision_score(test_y, predpa, average='macro'))
 
-    error = 0
-    noOfWrongPreds = []
-    dataPoints = []
+
 
     clf = SGDClassifier()
-    clf.fit(X_train, y_train)
-    predsgdc = clf.predict(X_train)
 
-    for i in range(1, len(predsgdc), 1):
-        if y_train[i] - predsgdc[i] != 0:
-            error += 1
-
-        if i % 50 == 0:
-            noOfWrongPreds.append(error / (i+1))
-            dataPoints.append(i+1)
+    for i in range(len(train_y)):
+        X, y = train_x[i:i + 1], train_y[i:i + 1]
+        clf.partial_fit(X, y, classes=np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]))
 
     print("--------------------------SGD--------------------------------")
-    print(error)
-    print(np.divide(error, len(y_train), dtype=np.float))
-    plot(noOfWrongPreds, dataPoints, "distribution of wrong predictions SGD")
-
-
+    predsgdc = clf.predict(test_x)
+    print("Accuracy score")
+    print(accuracy_score(test_y, predsgdc))
+    print("F1 score")
+    print(f1_score(test_y, predsgdc, average='macro'))
+    print("Recall")
+    print(recall_score(test_y, predsgdc, average='macro'))
+    print("Precision")
+    print(precision_score(test_y, predsgdc, average='macro'))
 
 
 

@@ -89,6 +89,8 @@ def train_neural_network():
                 batch_x = np.array(X_train[start:end])
                 batch_y = np.array(y_train[start:end])
 
+                print(batch_x.shape)
+
                 # runs the computation subgraph necessary for the specified operation.
 
                 _, c = sess.run([optimizer, cost], feed_dict={xplaceholder: batch_x, yplaceholder: batch_y})

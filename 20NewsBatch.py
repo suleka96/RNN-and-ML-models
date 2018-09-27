@@ -93,7 +93,7 @@ def train_test():
     batch_size = 32
     lstm_size = 200
     learning_rate = 0.003
-    epoch = 10
+    epoch = 5
 
     print("learning 32")
 
@@ -110,9 +110,6 @@ def train_test():
         # labels_ = tf.placeholder(dtype= tf.int32)
         labels_ = tf.placeholder(tf.float32, [None, None], name="labels")
         sql_in = tf.placeholder(tf.int32, [None], name='sql_in')
-
-        # output_keep_prob is the dropout added to the RNN's outputs, the dropout will have no effect on the calculation of the subsequent states.
-        keep_prob = tf.placeholder(tf.float32, name="keep_prob")
 
         # Size of the embedding vectors (number of units in the embedding layer)
         embed_size = 300
@@ -160,7 +157,6 @@ def train_test():
                 feed = {inputs_: x,
                         labels_: y,
                         sql_in: sql,
-                        keep_prob: 0.5,
                         initial_state: state}
 
                 loss, states, _ = sess.run([cost, final_state, optimizer], feed_dict=feed)
@@ -186,7 +182,6 @@ def train_test():
                     feed = {inputs_: x,
                             labels_: y,
                             sql_in: sql,
-                            keep_prob: 1,
                             initial_state: test_state}
 
                     predictions = tf.nn.softmax(logit).eval(feed_dict=feed)
@@ -195,8 +190,8 @@ def train_test():
                         argmax_pred_array.append(np.argmax(predictions[i], 0))
                         argmax_label_array.append(np.argmax(y[i], 0))
 
-                    print(argmax_pred_array)
-                    print(argmax_label_array)
+                    # print(argmax_pred_array)
+                    # print(argmax_label_array)
 
                 accuracy = accuracy_score(argmax_label_array, argmax_pred_array)
 
