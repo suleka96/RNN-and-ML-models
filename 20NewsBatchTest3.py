@@ -14,7 +14,7 @@ import nltk
 nltk.download('stopwords')
 
 
-
+#changing embed range wih sequence length
 def pre_process():
     newsgroups_data = fetch_20newsgroups(subset='all', remove=('headers', 'footers', 'quotes'))
 
@@ -55,7 +55,7 @@ def pre_process():
     # maximum message length = 6577
     # message_lens = Counter([len(x) for x in message_ints])
 
-    seq_length = 6577
+    seq_length = 100
     num_messages = len(temp_post_text)
     features = np.zeros([num_messages, seq_length], dtype=int)
     for i, row in enumerate(message_ints):
@@ -66,7 +66,15 @@ def pre_process():
     labels = np.reshape(lbl, [-1])
     labels = lb.fit_transform(labels)
 
-    sequence_lengths = [len(msg) for msg in message_ints]
+    sequence_lengths = []
+
+    for msg in message_ints:
+        lentemp = len(msg)
+        if lentemp > 100:
+            lentemp = 100
+        sequence_lengths.append(lentemp)
+
+
     return features, labels, len(sorted_split_words)+1, sequence_lengths
 
 
@@ -115,7 +123,7 @@ def train_test():
         embed_size = 300
 
         # generating random values from a uniform distribution (minval included and maxval excluded)
-        embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))
+        embedding = tf.Variable(tf.random_uniform((n_words, embed_size), 0, 1), trainable=True)
         embed = tf.nn.embedding_lookup(embedding, inputs_)
 
         # Your basic LSTM cell

@@ -14,7 +14,7 @@ import nltk
 nltk.download('stopwords')
 
 
-
+# without sequence length
 def pre_process():
     newsgroups_data = fetch_20newsgroups(subset='all', remove=('headers', 'footers', 'quotes'))
 
@@ -55,36 +55,44 @@ def pre_process():
     # maximum message length = 6577
     # message_lens = Counter([len(x) for x in message_ints])
 
-    seq_length = 6577
+    seq_length = 1000
     num_messages = len(temp_post_text)
     features = np.zeros([num_messages, seq_length], dtype=int)
     for i, row in enumerate(message_ints):
-        features[i, :len(row)] = np.array(row)[:seq_length]
+        features[i, -len(row):] = np.array(row)[:seq_length]
 
     lb = LabelBinarizer()
     lbl = newsgroups_data.target
     labels = np.reshape(lbl, [-1])
     labels = lb.fit_transform(labels)
 
-    sequence_lengths = [len(msg) for msg in message_ints]
-    return features, labels, len(sorted_split_words)+1, sequence_lengths
+    # sequence_lengths = []
+    #
+    # for msg in message_ints:
+    #     lentemp = len(msg)
+    #     if lentemp > 1000:
+    #         lentemp = 1000
+    #     sequence_lengths.append(lentemp)
 
 
-def get_batches(x, y, sql, batch_size=100):
+    return features, labels, len(sorted_split_words)+1
+
+
+def get_batches(x, y, batch_size=100):
     n_batches = len(x) // batch_size
     x, y = x[:n_batches * batch_size], y[:n_batches * batch_size]
     for ii in range(0, len(x), batch_size):
-        yield x[ii:ii + batch_size], y[ii:ii + batch_size], sql[ii:ii+batch_size]
+        yield x[ii:ii + batch_size], y[ii:ii + batch_size]
 
 
 
 def train_test():
-    features, labels, n_words, sequence_length = pre_process()
+    features, labels, n_words = pre_process()
 
     train_x, test_x, train_y, test_y = train_test_split(features, labels, test_size=0.2, shuffle=False, random_state=42)
 
-    sequence_length_train = sequence_length[:len(train_y)]
-    sequence_length_test= sequence_length[len(train_y):]
+    # sequence_length_train = sequence_length[:len(train_y)]
+    # sequence_length_test= sequence_length[len(train_y):]
 
 
     # Defining Hyperparameters
@@ -109,13 +117,13 @@ def train_test():
         inputs_ = tf.placeholder(tf.int32, [None, None], name="inputs")
         # labels_ = tf.placeholder(dtype= tf.int32)
         labels_ = tf.placeholder(tf.float32, [None, None], name="labels")
-        sql_in = tf.placeholder(tf.int32, [None], name='sql_in')
+        # sql_in = tf.placeholder(tf.int32, [None], name='sql_in')
 
         # Size of the embedding vectors (number of units in the embedding layer)
         embed_size = 300
 
         # generating random values from a uniform distribution (minval included and maxval excluded)
-        embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))
+        embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1), trainable=True)
         embed = tf.nn.embedding_lookup(embedding, inputs_)
 
         # Your basic LSTM cell
@@ -124,17 +132,17 @@ def train_test():
         # Getting an initial state of all zeros
         initial_state = lstm.zero_state(batch_size, tf.float32)
 
-        outputs, final_state = tf.nn.dynamic_rnn(lstm, embed, initial_state=initial_state, sequence_length=sql_in)
+        outputs, final_state = tf.nn.dynamic_rnn(lstm, embed, initial_state=initial_state)
 
-        out_batch_size = tf.shape(outputs)[0]
-        out_max_length = tf.shape(outputs)[1]
-        out_size = int(outputs.get_shape()[2])
-        index = tf.range(0, out_batch_size) * out_max_length + (sql_in - 1)
-        flat = tf.reshape(outputs, [-1, out_size])
-        relevant = tf.gather(flat, index)
+        # out_batch_size = tf.shape(outputs)[0]
+        # out_max_length = tf.shape(outputs)[1]
+        # out_size = int(outputs.get_shape()[2])
+        # index = tf.range(0, out_batch_size) * out_max_length + (sql_in - 1)
+        # flat = tf.reshape(outputs, [-1, out_size])
+        # relevant = tf.gather(flat, index)
 
         # hidden layer
-        hidden = tf.layers.dense(relevant, units=25, activation=tf.nn.relu)
+        hidden = tf.layers.dense(outputs[:,-1], units=25, activation=tf.nn.relu)
 
         logit = tf.contrib.layers.fully_connected(hidden, num_outputs=20, activation_fn=None)
 
@@ -152,11 +160,10 @@ def train_test():
         iteration = 1
         for e in range (epoch):
             state = sess.run(initial_state)
-            for ii, (x, y, sql) in enumerate(get_batches(np.array(train_x),  np.array(train_y), sequence_length_train, batch_size), 1):
+            for ii, (x, y) in enumerate(get_batches(np.array(train_x),  np.array(train_y), batch_size), 1):
 
                 feed = {inputs_: x,
                         labels_: y,
-                        sql_in: sql,
                         initial_state: state}
 
                 loss, states, _ = sess.run([cost, final_state, optimizer], feed_dict=feed)
@@ -178,10 +185,9 @@ def train_test():
                 saver.restore(sess, tf.train.latest_checkpoint('checkpoints'))
                 test_state = sess.run(lstm.zero_state(batch_size, tf.float32))
 
-                for ii, (x, y, sql) in enumerate(get_batches(np.array(test_x), np.array(test_y), sequence_length_test, batch_size), 1):
+                for ii, (x, y) in enumerate(get_batches(np.array(test_x), np.array(test_y),  batch_size), 1):
                     feed = {inputs_: x,
                             labels_: y,
-                            sql_in: sql,
                             initial_state: test_state}
 
                     predictions = tf.nn.softmax(logit).eval(feed_dict=feed)

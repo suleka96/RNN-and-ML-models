@@ -8,6 +8,7 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
+import math
 
 
 
@@ -82,8 +83,8 @@ val_y, test_y = val_y[:idx2], val_y[idx2:]
 # pred = mlnb.predict(X_test)
 #
 # clf = LogisticRegression()
-# clf.fit(X_train, y_train)
-# p = clf.predict(X_test)
+# clf.fit(train_x, train_y)
+# p = clf.predict(test_x)
 
 # param_grid = [{'C': range(1, 50), 'kernel': ['linear']}]
 #
@@ -99,27 +100,25 @@ val_y, test_y = val_y[:idx2], val_y[idx2:]
 # svctest.fit(X_train, y_train)
 # prediction = svctest.predict(X_test)
 
-svctest2 = SVC(kernel='linear', random_state=42, C=30)
-svctest2.fit(train_x, train_y)
-validation_pred = svctest2.predict(val_x)
-test_pred = svctest2.predict(test_x)
+# svctest2 = SVC(kernel='linear', random_state=42, C=0.001)
+# svctest2.fit(train_x, train_y)
+# validation_pred = svctest2.predict(val_x)
+# test_pred = svctest2.predict(test_x)
 
-
-
-# rcf = RandomForestClassifier( random_state=42)
-# rcf.fit(X_train, y_train)
-# predRFC = rcf.predict(X_test)
-
+rcf = RandomForestClassifier( random_state=42, n_estimators=70, max_features= 60)
+rcf.fit(train_x, train_y)
+validation_pred = rcf.predict(val_x)
+test_pred = rcf.predict(test_x)
 
 # print("----------------------Logistic Regression------------------------------")
 # print("Accuracy score")
-# print(accuracy_score(y_test, p))
+# print(accuracy_score(test_y, p))
 # print("F1 score")
-# print(f1_score(y_test, p, average='macro'))
+# print(f1_score(test_y, p, average='macro'))
 # print("Recall")
-# print(recall_score(y_test, p, average='macro'))
+# print(recall_score(test_y, p, average='macro'))
 # print("Precision")
-# print(precision_score(y_test, p, average='macro'))
+# print(precision_score(test_y, p, average='macro'))
 #
 # print("----------------------MultinomialNB------------------------------")
 # print("Accuracy score")
@@ -145,9 +144,33 @@ test_pred = svctest2.predict(test_x)
 # print()
 # print()
 
+# print("---------------------VALIDATION SCORES--------------------")
+# print("Accuracy score")
+# print(accuracy_score(val_y, validation_pred))
+# print("F1 score")
+# print(f1_score(val_y, validation_pred, average='macro'))
+# print("Recall")
+# print(recall_score(val_y, validation_pred, average='macro'))
+# print("Precision")
+# print(precision_score(val_y, validation_pred, average='macro'))
+#
+#
+# print("---------------------TEST SCORES--------------------")
+# print("Accuracy score")
+# print(accuracy_score(test_y, test_pred))
+# print("F1 score")
+# print(f1_score(test_y, test_pred, average='macro'))
+# print("Recall")
+# print(recall_score(test_y, test_pred, average='macro'))
+# print("Precision")
+# print(precision_score(test_y, test_pred, average='macro'))
+
+
+
+print("-------------------------Random Forest Classifier-------------------------------------------")
 print("---------------------VALIDATION SCORES--------------------")
 print("Accuracy score")
-print(accuracy_score(val_y, validation_pred))
+print(accuracy_score(val_y,validation_pred))
 print("F1 score")
 print(f1_score(val_y, validation_pred, average='macro'))
 print("Recall")
@@ -155,28 +178,15 @@ print(recall_score(val_y, validation_pred, average='macro'))
 print("Precision")
 print(precision_score(val_y, validation_pred, average='macro'))
 
-
 print("---------------------TEST SCORES--------------------")
 print("Accuracy score")
-print(accuracy_score(test_y, test_pred))
+print(accuracy_score(test_y,test_pred))
 print("F1 score")
 print(f1_score(test_y, test_pred, average='macro'))
 print("Recall")
 print(recall_score(test_y, test_pred, average='macro'))
 print("Precision")
 print(precision_score(test_y, test_pred, average='macro'))
-
-
-
-# print("-------------------------Random Forest Classifier-------------------------------------------")
-# print("Accuracy score")
-# print(accuracy_score(y_test,predRFC))
-# print("F1 score")
-# print(f1_score(y_test, predRFC, average='macro'))
-# print("Recall")
-# print(recall_score(y_test, predRFC, average='macro'))
-# print("Precision")
-# print(precision_score(y_test, predRFC, average='macro'))
 
 
 # ----------------------Logistic Regression------------------------------

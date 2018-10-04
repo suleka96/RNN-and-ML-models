@@ -8,21 +8,74 @@ from string import punctuation
 from sklearn.preprocessing import LabelBinarizer
 import numpy as np
 from nltk.corpus import stopwords
+from sklearn.utils import shuffle
 from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 from sklearn.model_selection import train_test_split
 import nltk
 nltk.download('stopwords')
 
-
+#reduced number of classes to 4 and sequnce size to 1000 and changed state when training to let the previouse state to flow to the current state
 
 def pre_process():
-    newsgroups_data = fetch_20newsgroups(subset='all', remove=('headers', 'footers', 'quotes'))
+
+
+    # categories =['alt.atheism', 'comp.graphics', 'comp.os.ms-windows.misc', 'comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware',
+    #  'comp.windows.x', 'misc.forsale', 'rec.autos', 'rec.motorcycles', 'rec.sport.baseball', 'rec.sport.hockey',
+    #  'sci.crypt', 'sci.electronics', 'sci.med', 'sci.space', 'soc.religion.christian', 'talk.politics.guns',
+    #  'talk.politics.mideast', 'talk.politics.misc', 'talk.religion.misc']
+
+
+    categories_comp = ['comp.graphics', 'comp.os.ms-windows.misc', 'comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware', 'comp.windows.x']
+
+    comp = fetch_20newsgroups(subset='all', categories=categories_comp, remove=('headers', 'footers', 'quotes'))
+
+    categories_rec = ['rec.autos', 'rec.motorcycles', 'rec.sport.baseball', 'rec.sport.hockey']
+
+    rec = fetch_20newsgroups(subset='all', categories=categories_rec, remove=('headers', 'footers', 'quotes'))
+
+    categories_politics = ['talk.politics.guns', 'talk.politics.mideast', 'talk.politics.misc']
+
+    politics = fetch_20newsgroups(subset='all', categories=categories_politics, remove=('headers', 'footers', 'quotes'))
+
+    categories_religion = ['talk.religion.misc', 'soc.religion.christian']
+
+    religion = fetch_20newsgroups(subset='all', categories=categories_religion, remove=('headers', 'footers', 'quotes'))
+
+    data_labels = []
+
+    for post in comp.data:
+        data_labels.append(1)
+
+    for post in rec.data:
+        data_labels.append(2)
+
+    for post in politics.data:
+        data_labels.append(3)
+
+    for post in religion.data:
+        data_labels.append(4)
+
+    news_data = []
+
+    for post in comp.data:
+        news_data.append(post)
+
+    for post in rec.data:
+        news_data.append(post)
+
+    for post in politics.data:
+        news_data.append(post)
+
+    for post in religion.data:
+        news_data.append(post)
+
+    newsgroups_data, newsgroups_labels = shuffle(news_data, data_labels, random_state=42)
 
     words = []
     temp_post_text = []
-    print(len(newsgroups_data.data))
+    print(len(newsgroups_data))
 
-    for post in newsgroups_data.data:
+    for post in newsgroups_data:
 
         all_text = ''.join([text for text in post if text not in punctuation])
         all_text = all_text.split('\n')
@@ -52,22 +105,32 @@ def pre_process():
         temp_message = message.split(" ")
         message_ints.append([vocab_to_int[i] for i in temp_message])
 
-    # maximum message length = 6577
-    # message_lens = Counter([len(x) for x in message_ints])
+    # # maximum message length = 4984
+    message_lens = Counter([len(x) for x in message_ints])
 
-    seq_length = 6577
+    seq_length = 1000
     num_messages = len(temp_post_text)
     features = np.zeros([num_messages, seq_length], dtype=int)
     for i, row in enumerate(message_ints):
         features[i, :len(row)] = np.array(row)[:seq_length]
 
     lb = LabelBinarizer()
-    lbl = newsgroups_data.target
-    labels = np.reshape(lbl, [-1])
-    labels = lb.fit_transform(labels)
+    # lbl = newsgroups_data.target
+    # labels = np.reshape(lbl, [-1])
+    labels = lb.fit_transform(newsgroups_labels)
 
-    sequence_lengths = [len(msg) for msg in message_ints]
+    # sequence_lengths = [len(msg) for msg in message_ints]
+
+    sequence_lengths = []
+
+    for msg in message_ints:
+        lentemp = len(msg)
+        if lentemp > 1000:
+            lentemp = 1000
+        sequence_lengths.append(lentemp)
+
     return features, labels, len(sorted_split_words)+1, sequence_lengths
+
 
 
 def get_batches(x, y, sql, batch_size=100):
@@ -75,7 +138,6 @@ def get_batches(x, y, sql, batch_size=100):
     x, y = x[:n_batches * batch_size], y[:n_batches * batch_size]
     for ii in range(0, len(x), batch_size):
         yield x[ii:ii + batch_size], y[ii:ii + batch_size], sql[ii:ii+batch_size]
-
 
 
 def train_test():
@@ -90,10 +152,10 @@ def train_test():
     # Defining Hyperparameters
 
     lstm_layers = 1
-    batch_size = 179
-    lstm_size = 30
-    learning_rate = 0.003
-    epoch = 15
+    batch_size = 50
+    lstm_size = 50
+    learning_rate = 0.01
+    epoch = 25
 
     print("learning 32")
 
@@ -112,14 +174,14 @@ def train_test():
         sql_in = tf.placeholder(tf.int32, [None], name='sql_in')
 
         # Size of the embedding vectors (number of units in the embedding layer)
-        embed_size = 300
+        embed_size = 50
 
         # generating random values from a uniform distribution (minval included and maxval excluded)
         embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))
         embed = tf.nn.embedding_lookup(embedding, inputs_)
 
         # Your basic LSTM cell
-        lstm = tf.contrib.rnn.BasicLSTMCell(lstm_size)
+        lstm = tf.contrib.rnn.BasicLSTMCell(num_units=lstm_size, forget_bias=1.0)
 
         # Getting an initial state of all zeros
         initial_state = lstm.zero_state(batch_size, tf.float32)
@@ -136,7 +198,7 @@ def train_test():
         # hidden layer
         hidden = tf.layers.dense(relevant, units=25, activation=tf.nn.relu)
 
-        logit = tf.contrib.layers.fully_connected(hidden, num_outputs=20, activation_fn=None)
+        logit = tf.contrib.layers.fully_connected(hidden, num_outputs=4, activation_fn=None)
 
         cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=logit, labels=labels_))
 

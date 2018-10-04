@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 from string import punctuation
 
+# added another hidden layer
 
 def pre_process():
     direc = "enron/emails/"
@@ -152,9 +153,12 @@ def train_test():
         outputs, final_state = tf.nn.dynamic_rnn(cell, embed, initial_state=initial_state)
 
         #hidden layer
-        hidden = tf.layers.dense(outputs[:, -1], units=25, activation=tf.nn.relu)
+        hidden1 = tf.layers.dense(outputs[:, -1], units=25, activation=tf.nn.relu)
 
-        logit = tf.contrib.layers.fully_connected(hidden, num_outputs=1, activation_fn=None)
+        hidden2 = tf.layers.dense(hidden1, units=15, activation=tf.nn.relu)
+
+
+        logit = tf.contrib.layers.fully_connected(hidden2, num_outputs=1, activation_fn=None)
 
         cost = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=logit, labels=labels_))
 
