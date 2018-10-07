@@ -16,7 +16,12 @@ import numpy as np
 from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 from string import punctuation
 
+<<<<<<< HEAD
 #method to preprocess the text data
+=======
+
+
+>>>>>>> 8dfe264163d54ef775527b96923ee65ccb24ac0f
 def pre_process():
     direc = "enron/emails/"
     files = os.listdir(direc)
@@ -57,7 +62,6 @@ def pre_process():
 
     #making a dictionary of all the words
     dictionary = Counter(words)
-    #deleting spaces
     del dictionary[""]
     sorted_split_words = sorted(dictionary, key=dictionary.get, reverse=True)
     vocab_to_int = {c: i for i, c in enumerate(sorted_split_words, 1)}
@@ -90,7 +94,6 @@ def train_test():
 
     features, labels, sorted_split_words = pre_process()
 
-    #splitting training, validation and testing sets
 
     split_frac1 = 0.8
 
@@ -114,8 +117,6 @@ def train_test():
           "\nValidation set: \t{}".format(val_y.shape),
           "\nTest set: \t\t{}".format(test_y.shape))
 
-    #Defining Hyperparameters
-
     epochs = 15
     lstm_layers = 1
     batch_size = 179
@@ -130,9 +131,9 @@ def train_test():
 
     #--------------placeholders-------------------------------------
 
-    # Create the graph object
+
     graph = tf.Graph()
-    # Add nodes to the graph
+ 
     with graph.as_default():
 
         tf.set_random_seed(1)
@@ -140,36 +141,33 @@ def train_test():
         inputs_ = tf.placeholder(tf.int32, [None,None], name = "inputs")
         labels_ = tf.placeholder(tf.float32, [None,None], name = "labels")
 
-        #getting dynamic batch size according to the input tensor size
-
-        #output_keep_prob is the dropout added to the RNN's outputs, the dropout will have no effect on the calculation of the subsequent states.
-
+      
         keep_prob = tf.placeholder(tf.float32, name = "keep_prob")
 
-        # Size of the embedding vectors (number of units in the embedding layer)
+       
         embed_size = 300
 
-        #generating random values from a uniform distribution (minval included and maxval excluded)
+     
         embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))
         embed = tf.nn.embedding_lookup(embedding, inputs_)
         print(embedding.shape)
         print(embed.shape)
 
-        # Your basic LSTM cell
+      
         lstm = tf.contrib.rnn.BasicLSTMCell(lstm_size)
 
-        # Add dropout to the cell
+       
         drop = tf.contrib.rnn.DropoutWrapper(lstm, output_keep_prob=keep_prob)
 
-        #Stack up multiple LSTM layers, for deep learning
+      
         cell = tf.contrib.rnn.MultiRNNCell([drop] * lstm_layers)
 
-        # Getting an initial state of all zeros
+    
         initial_state = cell.zero_state(batch_size, tf.float32)
 
         outputs, final_state = tf.nn.dynamic_rnn(cell, embed, initial_state=initial_state)
 
-        #hidden layer
+       
         hidden1 = tf.layers.dense(outputs[:, -1], units=25, activation=tf.nn.relu)
 
         hidden2 = tf.layers.dense(hidden1, units=15, activation=tf.nn.relu)
