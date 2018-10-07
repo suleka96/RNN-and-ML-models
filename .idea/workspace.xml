@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdca8f76-cd6d-4602-a38a-efeac24c106d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/20NewsBatchTest1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20NewsBatchTest2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20NewsBatchTest3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20NewsBatchTest4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20NewsOnlineTest1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20NewsOnlineTest2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/20NewsOnlineTest3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LSTM_Enron.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/credit cardtest1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20NewsBatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/20NewsBatch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LSTM_Enron.py" beforeDir="false" afterPath="$PROJECT_DIR$/LSTM_Enron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ML_Enron_preProcess.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_Enron_preProcess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RNN_Enron.py" beforeDir="false" afterPath="$PROJECT_DIR$/RNN_Enron.py" afterDir="false" />
     </list>
@@ -72,10 +63,10 @@
     <session id="1852138572">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="7" />
           <entry key="project.open.time.14" value="8" />
           <entry key="project.open.time.15" value="6" />
@@ -87,7 +78,7 @@
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="38" />
+          <entry key="project.opened" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -95,71 +86,77 @@
           <entry key="dummy" value="33" />
           <entry key="gitignore" value="2" />
           <entry key="md" value="23" />
-          <entry key="py" value="9812" />
+          <entry key="py" value="10584" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="23" />
           <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Python" value="9812" />
+          <entry key="Python" value="10584" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="checkpoint" value="1" />
-          <entry key="csv" value="1" />
+          <entry key="csv" value="2" />
           <entry key="gitignore" value="1" />
           <entry key="jpg" value="1" />
           <entry key="md" value="1" />
           <entry key="png" value="26" />
           <entry key="pth" value="1" />
-          <entry key="py" value="171" />
+          <entry key="py" value="173" />
           <entry key="results" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSV" value="1" />
+          <entry key="CSV" value="2" />
           <entry key="Image" value="27" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="171" />
+          <entry key="Python" value="173" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LSTM_Enron.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="99" column="29" lean-forward="true" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ML_Enron_preProcess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+            <state relative-caret-position="424">
+              <caret line="115" column="94" selection-start-line="115" selection-start-column="92" selection-end-line="115" selection-end-column="96" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RNN_Enron.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1632">
+              <caret line="191" column="5" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RNN_CreditCard.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RNN_Enron.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="843">
-              <caret line="146" column="64" lean-forward="true" selection-start-line="146" selection-start-column="64" selection-end-line="146" selection-end-column="64" />
+        <entry file="file://$PROJECT_DIR$/creditcard.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state relative-caret-position="255">
+              <caret line="17" column="34" selection-end-line="2424" selection-end-column="367" />
             </state>
           </provider>
         </entry>
@@ -253,8 +250,6 @@
         <option value="$PROJECT_DIR$/Arrow.py" />
         <option value="$PROJECT_DIR$/AROW_Enron.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/RNN_Enron.py" />
-        <option value="$PROJECT_DIR$/ML_Enron_preProcess.py" />
         <option value="$PROJECT_DIR$/20NewsOnline_LSTM.py" />
         <option value="$PROJECT_DIR$/20NewsOnlineTest2.py" />
         <option value="$PROJECT_DIR$/20NewsOnlineTest.py" />
@@ -267,6 +262,9 @@
         <option value="$PROJECT_DIR$/20NewsBatchTest4.py" />
         <option value="$PROJECT_DIR$/20NewsOnlineTest3.py" />
         <option value="$PROJECT_DIR$/credit cardtest1.py" />
+        <option value="$PROJECT_DIR$/LSTM_Enron.py" />
+        <option value="$PROJECT_DIR$/RNN_Enron.py" />
+        <option value="$PROJECT_DIR$/ML_Enron_preProcess.py" />
       </list>
     </option>
   </component>
@@ -276,11 +274,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1079" />
+  <component name="ProjectFrameBounds" extendedState="5">
+    <option name="x" value="1078" />
     <option name="y" value="24" />
-    <option name="width" value="843" />
-    <option name="height" value="1028" />
+    <option name="width" value="842" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -288,7 +286,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -300,6 +297,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -472,10 +470,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1079" y="24" width="843" height="1028" extended-state="0" />
+    <frame x="1078" y="24" width="842" height="1056" extended-state="5" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.40401506" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19346733" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -854,16 +852,6 @@
     <entry file="file://$PROJECT_DIR$/enron/distribution of wrong predictions 20 News LSTM.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/RNN_CreditCard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="23" selection-start-line="23" selection-end-line="23" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/20NewsBatchTest3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -899,13 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Arrow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -957,10 +938,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/creditcard.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="255">
-          <caret line="17" column="34" selection-end-line="2424" selection-end-column="367" />
+    <entry file="file://$PROJECT_DIR$/Arrow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LSTM_Enron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="8" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -974,30 +962,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/creditcard.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="255">
+          <caret line="17" column="34" selection-end-line="2424" selection-end-column="367" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNN_CreditCard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ML_Enron_preProcess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="424">
+          <caret line="115" column="94" selection-start-line="115" selection-start-column="92" selection-end-line="115" selection-end-column="96" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RNN_Enron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="843">
-          <caret line="146" column="64" lean-forward="true" selection-start-line="146" selection-start-column="64" selection-end-line="146" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LSTM_Enron.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="99" column="29" lean-forward="true" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1632">
+          <caret line="191" column="5" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
         </state>
       </provider>
     </entry>

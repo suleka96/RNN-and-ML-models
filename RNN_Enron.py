@@ -189,6 +189,7 @@ def train_test():
         saver.save(sess, "checkpoints/sentiment.ckpt")
 
     #-----------------testing validation set-----------------------------------------
+    #
     print("starting validation set")
     prediction_vals = []
     y_vals = []

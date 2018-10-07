@@ -1,3 +1,11 @@
+#Author: Suleka Helmini (https://github.com/suleka96)
+
+#this model was designed to test using the Enron datase (pre-processed version)
+#it can be obtained through the blow link.
+#https://www.kaggle.com/crawford/20-newsgroups
+#If you are running this in your local machine right out of the batch, download the dataset and put all the emails into one folder called 'emails' which is inside a folder called 'enron'.
+#or change the 'direc' to where your emails are
+
 import os
 from collections import Counter
 from sklearn.naive_bayes import MultinomialNB
@@ -105,7 +113,7 @@ val_y, test_y = val_y[:idx2], val_y[idx2:]
 # validation_pred = svctest2.predict(val_x)
 # test_pred = svctest2.predict(test_x)
 
-rcf = RandomForestClassifier( random_state=42, n_estimators=70, max_features= 60)
+rcf = RandomForestClassifier( random_state=42, n_estimators=70, max_features= 60, max_depth=None)
 rcf.fit(train_x, train_y)
 validation_pred = rcf.predict(val_x)
 test_pred = rcf.predict(test_x)

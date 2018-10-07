@@ -1,3 +1,14 @@
+
+
+#Author: Suleka Helmini (https://github.com/suleka96)
+
+#this model was designed to test using the Enron datase (pre-processed version)
+#it can be obtained through the blow link.
+#https://www.kaggle.com/crawford/20-newsgroups
+#If you are running this in your local machine right out of the batch, download the dataset and put all the emails into one folder called 'emails' which is inside a folder called 'enron'.
+#or change the 'direc' to where your emails are
+
+
 import os
 from collections import Counter
 import tensorflow as tf
@@ -5,15 +16,17 @@ import numpy as np
 from sklearn.metrics import f1_score, recall_score, precision_score, accuracy_score
 from string import punctuation
 
-# added another hidden layer
-
+#method to preprocess the text data
 def pre_process():
     direc = "enron/emails/"
     files = os.listdir(direc)
     emails = [direc+email for email in files]
 
+    # store all the words in all the emails
     words = []
+    # store cleaned up emails
     temp_email_text = []
+    # store labels (1=spam/ 0= ham)
     labels = []
     hamcounter=0
     spamcounter =0
@@ -27,6 +40,7 @@ def pre_process():
             spamcounter +=1
         f = open(email,encoding="utf8", errors='ignore')
         blob = f.read()
+        #removing punctuation
         all_text = ''.join([text for text in blob if text not in punctuation])
         all_text = all_text.split('\n')
         all_text = ''.join(all_text)
@@ -41,6 +55,7 @@ def pre_process():
         words += temp_text.split(" ")
         temp_email_text.append(temp_text)
 
+    #making a dictionary of all the words
     dictionary = Counter(words)
     #deleting spaces
     del dictionary[""]
@@ -62,6 +77,8 @@ def pre_process():
     print(spamcounter)
     return features, np.array(labels), sorted_split_words
 
+
+#method to get data with the same batch size
 def get_batches(x, y, batch_size=100):
     n_batches = len(x) // batch_size
     x, y = x[:n_batches * batch_size], y[:n_batches * batch_size]
