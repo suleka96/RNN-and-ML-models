@@ -1,49 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdca8f76-cd6d-4602-a38a-efeac24c106d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/AIG.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ARIMA.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPPrediction_uv2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPrediction_ML.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPrediction_mv.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPrediction_mv2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPrediction_mv_Online.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPrediction_onlineML.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StockPrediction_uv.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/ARIMA Prediction Vs Truth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/AutoCorrelation_ARIMA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Liner Regression Prediction Vs Truth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Original Close distribution.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Random Forest Regressor Prediction Vs Truth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/SGDRegressor Prediction Vs Truth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth mv online.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth mv.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth mv2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth uv.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth uv2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth uv3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions 20 News LSTM.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions Arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions ENRON.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions SGD.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions passiveAgresssive.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plots/trend plot ARIMA.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_scripts/test20Batch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_scripts/testReg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LSTM_Enron.py" beforeDir="false" afterPath="$PROJECT_DIR$/LSTM_Enron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_Enron_preProcess.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_Enron_preProcess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RNN_Enron.py" beforeDir="false" afterPath="$PROJECT_DIR$/RNN_Enron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions Arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions Arrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions ENRON.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions ENRON.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions SGD.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions SGD.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions passiveAgresssive.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions passiveAgresssive.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test20Batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_scripts/test20Batch.py" afterDir="false" />
-    </list>
+    <list default="true" id="cdca8f76-cd6d-4602-a38a-efeac24c106d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,8 +165,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            <state relative-caret-position="90">
+              <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -349,10 +307,11 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/plots" />
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -511,6 +470,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2824765" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1035,8 +995,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state relative-caret-position="90">
+          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
         </state>
       </provider>
     </entry>
