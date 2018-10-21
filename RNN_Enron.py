@@ -98,10 +98,10 @@ def train_test():
 
     #Defining Hyperparameters
 
-    epochs = 15
+    epochs = 7
     lstm_layers = 1
-    batch_size = 179
-    lstm_size = 30
+    batch_size = 150
+    lstm_size = 50
     n_words = len(sorted_split_words)+1
     learning_rate = 0.003
 
@@ -152,7 +152,7 @@ def train_test():
         outputs, final_state = tf.nn.dynamic_rnn(cell, embed, initial_state=initial_state)
 
         #hidden layer
-        hidden = tf.layers.dense(outputs[:, -1], units=25, activation=tf.nn.relu)
+        hidden = tf.layers.dense(outputs[:, -1], units=30, activation=tf.nn.relu)
 
         logit = tf.contrib.layers.fully_connected(hidden, num_outputs=1, activation_fn=None)
 

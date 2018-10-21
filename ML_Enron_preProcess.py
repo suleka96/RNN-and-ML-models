@@ -108,12 +108,12 @@ val_y, test_y = val_y[:idx2], val_y[idx2:]
 # svctest.fit(X_train, y_train)
 # prediction = svctest.predict(X_test)
 
-# svctest2 = SVC(kernel='linear', random_state=42, C=0.001)
+# svctest2 = SVC(kernel='linear', random_state=42, C=1)
 # svctest2.fit(train_x, train_y)
 # validation_pred = svctest2.predict(val_x)
 # test_pred = svctest2.predict(test_x)
 
-rcf = RandomForestClassifier( random_state=42, n_estimators=70, max_features= 60, max_depth=None)
+rcf = RandomForestClassifier( random_state=42, n_estimators=10, max_depth=None)
 rcf.fit(train_x, train_y)
 validation_pred = rcf.predict(val_x)
 test_pred = rcf.predict(test_x)
@@ -152,33 +152,9 @@ test_pred = rcf.predict(test_x)
 # print()
 # print()
 
-# print("---------------------VALIDATION SCORES--------------------")
-# print("Accuracy score")
-# print(accuracy_score(val_y, validation_pred))
-# print("F1 score")
-# print(f1_score(val_y, validation_pred, average='macro'))
-# print("Recall")
-# print(recall_score(val_y, validation_pred, average='macro'))
-# print("Precision")
-# print(precision_score(val_y, validation_pred, average='macro'))
-#
-#
-# print("---------------------TEST SCORES--------------------")
-# print("Accuracy score")
-# print(accuracy_score(test_y, test_pred))
-# print("F1 score")
-# print(f1_score(test_y, test_pred, average='macro'))
-# print("Recall")
-# print(recall_score(test_y, test_pred, average='macro'))
-# print("Precision")
-# print(precision_score(test_y, test_pred, average='macro'))
-
-
-
-print("-------------------------Random Forest Classifier-------------------------------------------")
 print("---------------------VALIDATION SCORES--------------------")
 print("Accuracy score")
-print(accuracy_score(val_y,validation_pred))
+print(accuracy_score(val_y, validation_pred))
 print("F1 score")
 print(f1_score(val_y, validation_pred, average='macro'))
 print("Recall")
@@ -186,15 +162,39 @@ print(recall_score(val_y, validation_pred, average='macro'))
 print("Precision")
 print(precision_score(val_y, validation_pred, average='macro'))
 
+
 print("---------------------TEST SCORES--------------------")
 print("Accuracy score")
-print(accuracy_score(test_y,test_pred))
+print(accuracy_score(test_y, test_pred))
 print("F1 score")
 print(f1_score(test_y, test_pred, average='macro'))
 print("Recall")
 print(recall_score(test_y, test_pred, average='macro'))
 print("Precision")
 print(precision_score(test_y, test_pred, average='macro'))
+
+
+
+# print("-------------------------Random Forest Classifier-------------------------------------------")
+# print("---------------------VALIDATION SCORES--------------------")
+# print("Accuracy score")
+# print(accuracy_score(val_y,validation_pred))
+# print("F1 score")
+# print(f1_score(val_y, validation_pred, average='macro'))
+# print("Recall")
+# print(recall_score(val_y, validation_pred, average='macro'))
+# print("Precision")
+# print(precision_score(val_y, validation_pred, average='macro'))
+#
+# print("---------------------TEST SCORES--------------------")
+# print("Accuracy score")
+# print(accuracy_score(test_y,test_pred))
+# print("F1 score")
+# print(f1_score(test_y, test_pred, average='macro'))
+# print("Recall")
+# print(recall_score(test_y, test_pred, average='macro'))
+# print("Precision")
+# print(precision_score(test_y, test_pred, average='macro'))
 
 
 # ----------------------Logistic Regression------------------------------

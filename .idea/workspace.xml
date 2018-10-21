@@ -2,10 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdca8f76-cd6d-4602-a38a-efeac24c106d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/AIG.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ARIMA.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPPrediction_uv2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPrediction_ML.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPrediction_mv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPrediction_mv2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPrediction_mv_Online.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPrediction_onlineML.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StockPrediction_uv.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/ARIMA Prediction Vs Truth.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/AutoCorrelation_ARIMA.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Liner Regression Prediction Vs Truth.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Original Close distribution.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Random Forest Regressor Prediction Vs Truth.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/SGDRegressor Prediction Vs Truth.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth mv online.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth mv.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth mv2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth uv.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth uv2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/Stock price Prediction VS Truth uv3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions 20 News LSTM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions Arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions ENRON.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions SGD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions passiveAgresssive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plots/trend plot ARIMA.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_scripts/test20Batch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_scripts/testReg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LSTM_Enron.py" beforeDir="false" afterPath="$PROJECT_DIR$/LSTM_Enron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ML_Enron_preProcess.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_Enron_preProcess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RNN_Enron.py" beforeDir="false" afterPath="$PROJECT_DIR$/RNN_Enron.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions Arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions Arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions ENRON.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions ENRON.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions SGD.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions SGD.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions passiveAgresssive.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/distribution of wrong predictions passiveAgresssive.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/distribution of wrong predictions.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test20Batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_scripts/test20Batch.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +102,7 @@
         <counts>
           <entry key="project.closed" value="5" />
           <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="7" />
@@ -78,13 +116,13 @@
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="40" />
+          <entry key="project.opened" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="33" />
-          <entry key="gitignore" value="2" />
+          <entry key="gitignore" value="10" />
           <entry key="md" value="23" />
           <entry key="py" value="10584" />
         </counts>
@@ -92,7 +130,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="23" />
-          <entry key="PLAIN_TEXT" value="35" />
+          <entry key="PLAIN_TEXT" value="43" />
           <entry key="Python" value="10584" />
         </counts>
       </usages-collector>
@@ -100,12 +138,12 @@
         <counts>
           <entry key="checkpoint" value="1" />
           <entry key="csv" value="2" />
-          <entry key="gitignore" value="1" />
+          <entry key="gitignore" value="2" />
           <entry key="jpg" value="1" />
           <entry key="md" value="1" />
           <entry key="png" value="26" />
           <entry key="pth" value="1" />
-          <entry key="py" value="173" />
+          <entry key="py" value="178" />
           <entry key="results" value="1" />
         </counts>
       </usages-collector>
@@ -114,8 +152,8 @@
           <entry key="CSV" value="2" />
           <entry key="Image" value="27" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="173" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="Python" value="178" />
         </counts>
       </usages-collector>
     </session>
@@ -123,28 +161,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ML_Enron_preProcess.py">
+        <entry file="file://$PROJECT_DIR$/StockPPrediction_uv2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="115" column="94" selection-start-line="115" selection-start-column="92" selection-end-line="115" selection-end-column="96" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RNN_Enron.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="191" column="5" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RNN_CreditCard.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            <state relative-caret-position="-2256">
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -153,22 +172,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/creditcard.csv">
-          <provider selected="true" editor-type-id="LargeFileEditor">
-            <state relative-caret-position="255">
-              <caret line="17" column="34" selection-end-line="2424" selection-end-column="367" />
+        <entry file="file://$PROJECT_DIR$/StockPrediction_ML.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1751">
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ML_Enron.py">
+        <entry file="file://$PROJECT_DIR$/StockPrediction_mv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="104" selection-start-line="104" selection-end-line="104" />
+            <state>
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/StockPrediction_mv2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2691">
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -239,7 +279,6 @@
         <option value="$PROJECT_DIR$/20NewsOnline.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/20NewsOnlineBatch.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/test20Batch.py" />
         <option value="$PROJECT_DIR$/ML_Enron.py" />
         <option value="$PROJECT_DIR$/20NewsOnline_ML.py" />
@@ -265,6 +304,7 @@
         <option value="$PROJECT_DIR$/LSTM_Enron.py" />
         <option value="$PROJECT_DIR$/RNN_Enron.py" />
         <option value="$PROJECT_DIR$/ML_Enron_preProcess.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -274,11 +314,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="5">
-    <option name="x" value="1078" />
-    <option name="y" value="24" />
-    <option name="width" value="842" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="62" />
+    <option name="y" value="-4" />
+    <option name="width" value="928" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -470,10 +510,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1078" y="24" width="842" height="1056" extended-state="5" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19346733" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2824765" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -645,28 +684,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/numpy/core/_methods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/figures/Distribution of wrong predictions.jpg" />
-    <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/collections/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7890">
-          <caret line="527" selection-start-line="527" selection-end-line="527" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/SOL/experiments/experiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="287" selection-start-line="287" selection-end-line="288" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RNN_CrediCard_ErrorReduction.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -712,11 +729,6 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="165">
@@ -725,18 +737,16 @@
           <second_editor />
         </state>
       </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NN_MNIST.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="887">
           <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -795,13 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test20Batch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="899">
-          <caret line="123" column="53" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AROW_Enron.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1755">
@@ -809,7 +812,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/distribution of wrong predictions.png">
+    <entry file="file://$PROJECT_DIR$/plots/distribution of wrong predictions.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/distribution of wrong predictions.png">
@@ -828,13 +831,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="468" lean-forward="true" selection-start-line="468" selection-end-line="468" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/RNN_MNIST.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-85">
@@ -952,12 +949,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ML_Enron.py">
+    <entry file="file://$PROJECT_DIR$/RNN_CreditCard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
+        <state relative-caret-position="180">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -969,27 +966,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RNN_CreditCard.py">
+    <entry file="file://$PROJECT_DIR$/ML_Enron.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        <state relative-caret-position="1455">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNN_Enron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="191" column="5" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ML_Enron_preProcess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
-          <caret line="115" column="94" selection-start-line="115" selection-start-column="92" selection-end-line="115" selection-end-column="96" />
+          <caret line="115" column="79" selection-start-line="115" selection-start-column="79" selection-end-line="115" selection-end-column="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RNN_Enron.py">
+    <entry file="file://$PROJECT_DIR$/StockPPrediction_uv2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="191" column="5" selection-start-line="191" selection-start-column="5" selection-end-line="191" selection-end-column="5" />
+        <state relative-caret-position="-2256">
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StockPrediction_ML.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1751">
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StockPrediction_mv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StockPrediction_mv2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2691">
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test20Batch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="123" column="53" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
