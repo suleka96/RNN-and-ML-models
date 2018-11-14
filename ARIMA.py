@@ -97,10 +97,3 @@ def ARIMA_model():
 
 if __name__ == '__main__':
     ARIMA_model()
-
-
-
-
-
-
-

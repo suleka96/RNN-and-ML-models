@@ -1,7 +1,7 @@
-creditcard.csv
-spam.csv
-AIG.csv
+csv_files/creditcard.csv
+csv_files/spam.csv
 /enron
+/data
 /temp
 /checkpoint
 /checkpoints/checkpoint

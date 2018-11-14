@@ -10,6 +10,7 @@ from sklearn.metrics import mean_absolute_error
 from math import sqrt
 import random as rn
 import os
+np.random.seed(1)
 
 # os.environ['PYTHONHASHSEED'] = '0'
 #
@@ -26,7 +27,7 @@ import os
 class RNNConfig():
     input_size = 1
     num_steps = 2
-    lstm_size = 128
+    hidden_size = 128
     num_layers = 1
     keep_prob = 0.8
     batch_size = 64
@@ -69,7 +70,7 @@ def scale(data):
 
 
 def pre_process():
-    # plot_main_distribution()
+    plot_main_distribution()
 
     stock_data = pd.read_csv(config.fileName)
     stock_data = stock_data.reindex(index=stock_data.index[::-1])
@@ -159,7 +160,10 @@ def train_test():
         keep_prob = tf.placeholder(tf.float32, None, name="keep_prob")
 
 
-        lstm_cell = tf.contrib.rnn.LSTMCell(config.lstm_size, state_is_tuple=True)
+        # lstm_cell = tf.contrib.rnn.LSTMCell(config.hidden_size, state_is_tuple=True)
+
+        lstm_cell = tf.contrib.rnn.BasicRNNCell(config.hidden_size)
+
 
         # Add dropout to the cell
         drop = tf.contrib.rnn.DropoutWrapper(lstm_cell, output_keep_prob=keep_prob)
@@ -173,7 +177,7 @@ def train_test():
 
         last = tf.gather(val, int(val.get_shape()[0]) - 1, name="last_lstm_output")
 
-        weight = tf.Variable(tf.truncated_normal([config.lstm_size, config.input_size]))
+        weight = tf.Variable(tf.truncated_normal([config.hidden_size, config.input_size]))
         bias = tf.Variable(tf.constant(0.1, shape=[config.input_size]))
 
         prediction = tf.matmul(last, weight) + bias

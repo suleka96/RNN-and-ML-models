@@ -8,6 +8,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from math import sqrt
+np.random.seed(0)
 
 
 
@@ -21,7 +22,7 @@ class RNNConfig():
     init_learning_rate = 0.001
     learning_rate_decay = 0.99
     init_epoch = 3 #5
-    max_epoch = 5 #100 or 50
+    max_epoch = 30 #100 or 50
     features = 2
     scaler = MinMaxScaler()
 
@@ -30,7 +31,7 @@ config = RNNConfig()
 
 
 def pre_process():
-    np.random.seed(0)
+
 
     num_steps = config.num_steps
     test_ratio = 0.2

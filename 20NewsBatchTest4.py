@@ -86,7 +86,7 @@ def pre_process():
             if word.isalpha():
                 temp_text[temp_text.index(word)] = word.lower()
 
-        temp_text = [word for word in temp_text if word not in stopwords.words('english')]
+        # temp_text = [word for word in temp_text if word not in stopwords.words('english')]
         temp_text = list(filter(None, temp_text))
         temp_text = ' '.join([i for i in temp_text if not i.isdigit()])
         words += temp_text.split(" ")
@@ -108,7 +108,7 @@ def pre_process():
     # # maximum message length = 4984
     message_lens = Counter([len(x) for x in message_ints])
 
-    seq_length = 1000
+    seq_length = 100
     num_messages = len(temp_post_text)
     features = np.zeros([num_messages, seq_length], dtype=int)
     for i, row in enumerate(message_ints):
@@ -125,8 +125,8 @@ def pre_process():
 
     for msg in message_ints:
         lentemp = len(msg)
-        if lentemp > 1000:
-            lentemp = 1000
+        if lentemp > 100:
+            lentemp = 100
         sequence_lengths.append(lentemp)
 
     return features, labels, len(sorted_split_words)+1, sequence_lengths
@@ -152,10 +152,10 @@ def train_test():
     # Defining Hyperparameters
 
     lstm_layers = 1
-    batch_size = 50
-    lstm_size = 50
+    batch_size = 64
+    lstm_size = 128
     learning_rate = 0.01
-    epoch = 25
+    epoch = 1
 
     print("learning 32")
 
@@ -174,7 +174,7 @@ def train_test():
         sql_in = tf.placeholder(tf.int32, [None], name='sql_in')
 
         # Size of the embedding vectors (number of units in the embedding layer)
-        embed_size = 50
+        embed_size = 300
 
         # generating random values from a uniform distribution (minval included and maxval excluded)
         embedding = tf.Variable(tf.random_uniform((n_words, embed_size), -1, 1))

@@ -93,7 +93,7 @@ def train_test():
     batch_size = 179
     lstm_size = 30
     learning_rate = 0.003
-    epoch = 15
+    epoch = 3
 
     print("learning 32")
 

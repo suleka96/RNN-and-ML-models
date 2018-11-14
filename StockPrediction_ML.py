@@ -37,6 +37,7 @@ class RNNConfig():
 
 config = RNNConfig()
 
+
 def segmentation(data):
 
     seq = [price for tup in data[[config.column2, config.column1]].values for price in tup]
@@ -141,11 +142,12 @@ def Linear_Regression():
 
     prediction = reg.predict(test_X)
 
-    pred_vals = [(pred * (config.column1_max - config.column1_min)) + config.column1_min for pred in prediction]
+    pred_vals, nonescaled_y = prediction, test_y
+    # pred_vals = [(pred * (config.column1_max - config.column1_min)) + config.column1_min for pred in prediction]
 
-    pred_vals = np.asarray(pred_vals)
+    # pred_vals = np.asarray(pred_vals)
 
-    get_scores("---------Linear Regression----------",pred_vals,nonescaled_y)
+    get_scores("---------Linear Regression----------",pred_vals, nonescaled_y)
 
     plot(nonescaled_y,pred_vals,"Liner Regression Prediction Vs Truth.png")
 
@@ -154,11 +156,11 @@ def Random_Forest_Regressor():
 
     train_X, train_y, test_X, test_y, nonescaled_y = pre_process()
 
-    reg = RandomForestRegressor(max_depth=2, random_state=0, n_estimators=100).fit(train_X, train_y)
+    rfr = RandomForestRegressor(random_state=42).fit(train_X, train_y)
 
-    prediction = reg.predict(test_X)
+    rfr_prediction = rfr.predict(test_X)
 
-    pred_vals = [(pred * (config.column1_max - config.column1_min)) + config.column1_min for pred in prediction]
+    pred_vals = [(pred * (config.column1_max - config.column1_min)) + config.column1_min for pred in rfr_prediction]
 
     pred_vals = np.asarray(pred_vals)
 
